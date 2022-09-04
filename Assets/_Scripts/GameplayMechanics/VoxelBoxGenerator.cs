@@ -6,9 +6,11 @@ public class VoxelBoxGenerator : MonoBehaviour
 {
     public GameObject[] voxelCubes;
 
-    [SerializeField]private float zDepthModifier;
+    [SerializeField]private float xDepthModifier, yDepthModifier, zDepthModifier;
 
     [SerializeField] private GameObject voxelParent;
+
+    public float voxelPrefabSize;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +25,14 @@ public class VoxelBoxGenerator : MonoBehaviour
 
     IEnumerator createVoxelMap()
     {
-        for (float y = 0; y < 3; y += 0.1f)
+        var yRange = 8 + yDepthModifier;
+        var xRange = 10 + xDepthModifier;
+        for (float y = yDepthModifier; y < yRange; y += voxelPrefabSize)
         {
-            for (float x = 0; x < 5; x += 0.1f)
+            for (float x = xDepthModifier; x < xRange; x += voxelPrefabSize)
             {
                 GameObject tmp = Instantiate(voxelCubes[Random.Range(0, voxelCubes.Length)], new Vector3(x, y, zDepthModifier),
-                    Quaternion.identity);
+                    Quaternion.Euler(new Vector3(0, Random.Range(-20f, 20f),Random.Range(-20f, 20f))));
                 tmp.transform.parent = voxelParent.transform;
             }
         }
