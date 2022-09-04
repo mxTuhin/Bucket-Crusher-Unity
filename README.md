@@ -12,3 +12,4 @@
 Played the game for about half an hour. I think they have used voxel system for the cubes and Inverse Kinematics for the Crusher Body. I would like to focus on these issues first.
 - Generate Voxel System
 - Inverse Kinematics for Crusher
+- Created the crane base and Map base
