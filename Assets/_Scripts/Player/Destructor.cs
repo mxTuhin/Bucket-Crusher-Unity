@@ -17,7 +17,7 @@ public class Destructor : MonoBehaviour
                 Rigidbody rb = collider.AddComponent<Rigidbody>();
                 var tempContraints = RigidbodyConstraints.FreezePositionZ;
                 rb.constraints = tempContraints;
-                rb.mass = 10;
+                rb.mass = 100;
                 // rb.drag = 10;
                 // rb.angularDrag = 5;
             }
