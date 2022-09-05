@@ -14,6 +14,11 @@ Played the game for about half an hour. I think they have used voxel system for 
 - Inverse Kinematics for Crusher
 - Created the crane base and Map base
 
+<br><br>
+<center>
+<img src="Screenshot/Day1.png" height="300px">
+</center>
+
 ## Day 2 (09.05.2022)
 Yesterday the IK was added with Final IK asset. The Final IK seems to be an advanced asset and I feel like the games IK system can be more simpler one with limited complexity. 
 So today I decided to work on a simpler IK from scratch.
