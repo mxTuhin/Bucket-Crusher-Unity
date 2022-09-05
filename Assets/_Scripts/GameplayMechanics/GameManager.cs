@@ -8,8 +8,9 @@ public class GameManager : GameplaySystems
     public static GameManager instance;
     // Start is called before the first frame update
 
-    [Header("Gameplay UI")] [SerializeField]
-    private Text score;
+    public float[] moneyList = {0.5f, 1.0f};
+    public float moneyMultiplier=1.0f;
+    
     void Start()
     {
         instance = this;
