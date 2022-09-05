@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class IgnoreTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider collider)
     {
-        
+        if (collider.CompareTag("VoxelCubes"))
+        {
+            Destroy(collider.gameObject, 2.0f);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

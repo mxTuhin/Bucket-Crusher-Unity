@@ -12,8 +12,6 @@ public class Destructor : MonoBehaviour
         {
             if (collider.GetComponent<Rigidbody>() == null)
             {
-                print(collider.name);
-                print("Colldiding");
                 Rigidbody rb = collider.AddComponent<Rigidbody>();
                 var tempContraints = RigidbodyConstraints.FreezePositionZ;
                 rb.constraints = tempContraints;
