@@ -13,8 +13,7 @@ Played the game for about half an hour. I think they have used voxel system for 
 - Generate Voxel System
 - Inverse Kinematics for Crusher
 - Created the crane base and Map base
-
-<br><br>
+<br>
 <center>
 <img src="Screenshot/Day1.png" height="300px">
 </center>
