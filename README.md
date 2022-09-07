@@ -8,7 +8,7 @@
 
 ## Development Timeline
 
-## Day 1 (09.04.2022)
+## Day 1 (04.09.2022)
 Played the game for about half an hour. I think they have used voxel system for the cubes and Inverse Kinematics for the Crusher Body. I would like to focus on these issues first.
 - Generate Voxel System
 - Inverse Kinematics for Crusher
@@ -18,7 +18,7 @@ Played the game for about half an hour. I think they have used voxel system for 
 <img src="Screenshot/Day1.png" height="300px">
 </center>
 
-## Day 2 (09.05.2022)
+## Day 2 (05.09.2022)
 Yesterday the IK was added with Final IK asset. The Final IK seems to be an advanced asset and I feel like the games IK system can be more simpler one with limited complexity. 
 So today I decided to work on a simpler IK from scratch.
 - Added Gameplay UI System
@@ -32,3 +32,13 @@ So today I decided to work on a simpler IK from scratch.
 </center>
 
 <b> Challenge Arised </b>: [Academic] POL101 Final Policy Brief Deadline within 72 Hours.
+
+## Day 3 (07.09.2022)
+Resumed working on the game after one day break in between. Today I have planned to work on bringing the game to next step
+
+- Spike/Player Traversal limited within radius
+- Worked on UI System [Progress Bar, Gas Bar, Game Over System]
+- Floating Joystick Control
+- Slightly tried the Physics Based interaction
+
+<b> Primarily, for the next updates the idea is to make coupled component decoupled. The current implementation of singleton arises coupling issue for scalable projects. Will change the Singletons with Scriptable Objects.  </b>
