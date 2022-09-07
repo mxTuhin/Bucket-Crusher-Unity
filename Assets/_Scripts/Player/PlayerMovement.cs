@@ -6,9 +6,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
         Rigidbody playerRigidbody;
+        
+        [Header("Control Parameters")]
         public float speedMultiplier = 5f;
         private float horizontalMovement;
         private float verticalMovement;
+        public float radius=2f;
+        
+        [Header("Object References")]
+        public GameObject PlayerPivot;
+
+        public FloatingJoystick _floatingJoystick;
+    
     
         void Start()
         {
@@ -18,17 +27,27 @@ public class PlayerMovement : MonoBehaviour
 
         private void Update()
         {
-            horizontalMovement = Input.GetAxis("Horizontal");
-            verticalMovement = Input.GetAxis("Vertical");
+            horizontalMovement = _floatingJoystick.Horizontal;
+            verticalMovement = _floatingJoystick.Vertical;
+            
+            Vector3 movement = new Vector3(horizontalMovement, verticalMovement, 0);
+            playerRigidbody.MovePosition(transform.position + movement * (Time.deltaTime * speedMultiplier));
+
+            float distanceFromPivot = Vector3.Distance(transform.position, PlayerPivot.transform.position);
+         
+            if (distanceFromPivot > radius)
+            {
+                Vector3 differenceFromPivot = transform.position - PlayerPivot.transform.position;
+                // fromOrigintoObject *= radius / dist;
+                differenceFromPivot.Normalize();
+                transform.position = PlayerPivot.transform.position + differenceFromPivot*(radius-0.07f);
+            }
+
         }
 
         void FixedUpdate()
         {
-            //Store user input as a movement vector
-            Vector3 m_Input = new Vector3(horizontalMovement, verticalMovement, 0);
-    
-            //Apply the movement vector to the current position, which is
-            //multiplied by deltaTime and speed for a smooth MovePosition
-            playerRigidbody.MovePosition(transform.position + m_Input * (Time.deltaTime * speedMultiplier));
+            
+            
         }
 }
