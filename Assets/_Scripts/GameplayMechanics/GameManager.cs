@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,15 @@ public class GameManager : GameplaySystems
 
     public float[] moneyList = {0.5f, 1.0f};
     public float moneyMultiplier=1.0f;
-    
+
+    public bool gameOver;
+    public GameObject GameOverCanvas;
+
+    private void OnEnable()
+    {
+        GameplayUI.triggerGameOver += GameOverEvent;
+    }
+
     void Start()
     {
         instance = this;
@@ -19,6 +28,14 @@ public class GameManager : GameplaySystems
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    private void GameOverEvent()
+    {
+        gameOver = true;
+        GameOverCanvas.SetActive(true);
+    }
+
+    
 }
