@@ -17,7 +17,9 @@ public class PlayerMovement : MonoBehaviour
         public GameObject PlayerPivot;
         
         public FloatingJoystick _floatingJoystick;
-    
+        
+        // UI Action
+        public static event Action<float> ReduceGas;
     
         void Start()
         {
@@ -41,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
                 // fromOrigintoObject *= radius / dist;
                 differenceFromPivot.Normalize();
                 transform.position = PlayerPivot.transform.position + differenceFromPivot*(radius-0.07f);
+            }
+
+            if (movement.magnitude != 0)
+            {
+                ReduceGas?.Invoke(Time.deltaTime);
             }
 
         }
