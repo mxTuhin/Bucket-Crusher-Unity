@@ -36,7 +36,7 @@ public class FloatingJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        print("Drag");
+        
         Vector2 JoystickDirection = eventData.position -
                                     JoystickPosition;
         input = (JoystickDirection.magnitude > Background.sizeDelta.x / 2f)
@@ -51,7 +51,7 @@ public class FloatingJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        print("Down");
+        
         Background.gameObject.SetActive(true);
         OnDrag(eventData);
         JoystickPosition = eventData.position;
@@ -61,7 +61,7 @@ public class FloatingJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        print("Up");
+        
         Background.gameObject.SetActive(false);
         input = Vector2.zero;
         Handle.anchoredPosition = Vector2.zero;

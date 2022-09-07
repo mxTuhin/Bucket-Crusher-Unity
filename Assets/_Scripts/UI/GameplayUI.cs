@@ -7,13 +7,23 @@ using UnityEngine.UI;
 
 public class GameplayUI : MonoBehaviour
 {
-    [Header("Gameplay UI")] [SerializeField]
-    private TextMeshProUGUI moneyText;
+    
+    
+    private int voxelCubeCount;
+    private int triggeredCubeCount;
+    [SerializeField] private Image progressBar;
+    
+    
+    [SerializeField] private TextMeshProUGUI moneyText;
     private float money;
+    
+    
 
     private void OnEnable()
     {
         PointTrigger.voxelCollided += UpdateScore;
+        VoxelBoxGenerator.voxelCounter += UpdateVoxelCubeCount;
+        Destructor.AddProgress += ModifyLevelProgressBar;
     }
 
     // Start is called before the first frame update
@@ -21,18 +31,23 @@ public class GameplayUI : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     private void UpdateScore(float amount)
     {
-        
         money += amount;
         moneyText.text = money.ToString("00")+"$";
-        print(money);
+        // print(money);
+    }
+
+    private void UpdateVoxelCubeCount(int _value)
+    {
+        voxelCubeCount = _value;
+    }
+
+    private void ModifyLevelProgressBar()
+    {
+        triggeredCubeCount += 1;
+        progressBar.fillAmount = (voxelCubeCount - triggeredCubeCount)/(float)voxelCubeCount;
     }
 }
