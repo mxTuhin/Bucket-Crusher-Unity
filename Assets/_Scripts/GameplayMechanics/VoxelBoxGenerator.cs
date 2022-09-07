@@ -1,17 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class VoxelBoxGenerator : MonoBehaviour
 {
+    [Header("Prefab & Object Referbece")]
     public GameObject[] voxelCubes;
-
-    [SerializeField]private float xDepthModifier, yDepthModifier, zDepthModifier;
-
     [SerializeField] private GameObject voxelParent;
+
+    [Header("Modifiers")]
+    [SerializeField]private float xDepthModifier;
+
+    [SerializeField] private float yDepthModifier;
+    [SerializeField]private float zDepthModifier;
+
+    [Header("Values & Parameters")] 
+    [SerializeField]
+    private float xMax;
+    [SerializeField] private float yMax;
 
     public float voxelPrefabSize;
     // Start is called before the first frame update
+
+    public static event Action<int> voxelCounter; 
     void Start()
     {
         StartCoroutine(createVoxelMap());
@@ -25,8 +38,8 @@ public class VoxelBoxGenerator : MonoBehaviour
 
     IEnumerator createVoxelMap()
     {
-        var yRange = 8 + yDepthModifier;
-        var xRange = 10 + xDepthModifier;
+        var yRange = yMax + yDepthModifier;
+        var xRange = xMax + xDepthModifier;
         for (float y = yDepthModifier; y < yRange; y += voxelPrefabSize)
         {
             for (float x = xDepthModifier; x < xRange; x += voxelPrefabSize)
@@ -36,6 +49,8 @@ public class VoxelBoxGenerator : MonoBehaviour
                 tmp.transform.parent = voxelParent.transform;
             }
         }
+        voxelCounter?.Invoke(voxelParent.transform.childCount);
         yield break;
     }
+    
 }

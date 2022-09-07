@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
         
         [Header("Object References")]
         public GameObject PlayerPivot;
-
+        
         public FloatingJoystick _floatingJoystick;
     
     

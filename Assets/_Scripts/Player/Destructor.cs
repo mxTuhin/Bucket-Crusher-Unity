@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Destructor : MonoBehaviour
 {
+    public static event Action AddProgress;
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("VoxelCubes"))
@@ -18,6 +19,7 @@ public class Destructor : MonoBehaviour
                 rb.mass = 100;
                 // rb.drag = 10;
                 // rb.angularDrag = 5;
+                AddProgress?.Invoke();
             }
         }
     }

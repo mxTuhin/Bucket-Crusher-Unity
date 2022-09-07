@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class PointTrigger : MonoBehaviour, ITriggerAble
 {
     public static event Action<float> voxelCollided;
+    
     // public Transform coinInstantiator;
     // public GameObject coin;
     // public TextMeshPro coinText;
