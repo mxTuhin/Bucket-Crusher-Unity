@@ -7,21 +7,19 @@ using UnityEngine.UI;
 
 public class GameplayUI : MonoBehaviour
 {
-    
+    public Image gasBar;
+    private float toalGas=50;   //Should Retrieve from Scriptable Objects
+    private float usedGas;
     
     private int voxelCubeCount;
     private int triggeredCubeCount;
-    [SerializeField] private Image progressBar;
+    public Image progressBar;
     
     
-    [SerializeField] private TextMeshProUGUI moneyText;
+    public TextMeshProUGUI moneyText;
     private float money;
 
     public GameObject warning;
-    
-    public Image gasBar;
-    private float toalGas=10;   //Should Retrieve from Scriptable Objects
-    private float usedGas;
     
     
     
