@@ -2,8 +2,8 @@
 
 ## Project Information
 - Assigned as a Task
-- Unity Version: 2021.3.9f1
-- Start Date: 09.04.2022
+- Unity Version: 2022.1.15f1
+- Start Date: 04.09.2022
 - Duration: 7 Days (7*24 Hours)
 
 ## Development Timeline
@@ -42,3 +42,14 @@ Resumed working on the game after one day break in between. Today I have planned
 - Slightly tried the Physics Based interaction
 
 <b> Primarily, for the next updates the idea is to make coupled component decoupled. The current implementation of singleton arises coupling issue for scalable projects. Will change the Singletons with Scriptable Objects.  </b>
+
+## Version Change Log
+The Unity 2021.3.9f1 LTS was facing engine bugs. The Script and editor pipeline was not synced properly along with showing weird bugs like GameObject has been destroyed while those objects were intact on the scene. Had to upgrade to 2022.x.x to avoid any further issues.
+
+## Day 4 (08.09.2022)
+- Player Pivot Updated
+- UI Mechanics Furnished
+
+## Day 5 (09.09.2022)
+- Player Movement Script Updated with Clamped System
+- Camera Follow System Integrated
