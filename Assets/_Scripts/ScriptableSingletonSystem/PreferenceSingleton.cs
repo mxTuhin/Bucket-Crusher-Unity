@@ -10,6 +10,9 @@ namespace _Scripts.ScriptableSingletonSystem
         public float strengthStage;
         public float gasStage;
         public float spikeStage;
+        
+        [Header("Extra Features")]
+        public float moneyMultiplier=1.0f;
 
         public void setValues(float _manipulatorStage, float _strengthStage, float _gasStage, float _spikeStage)
         {

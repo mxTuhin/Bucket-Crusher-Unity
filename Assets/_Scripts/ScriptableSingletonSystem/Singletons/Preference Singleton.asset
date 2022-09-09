@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ddfc673dc25ac499ca1c0e2528d247, type: 3}
   m_Name: Preference Singleton
   m_EditorClassIdentifier: 
-  manipulatorStage: 0
+  manipulatorStage: 1
   manipulatorRange:
   - 2.1
-  strengthStage: 0
-  gasStage: 0
-  spikeStage: 0
+  strengthStage: 1
+  gasStage: 1
+  spikeStage: 1
+  moneyMultiplier: 1
