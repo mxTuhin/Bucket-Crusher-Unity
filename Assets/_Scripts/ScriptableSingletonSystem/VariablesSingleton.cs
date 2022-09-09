@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.Singleton_System
+namespace _Scripts.ScriptableSingletonSystem
 {
     [CreateAssetMenu(menuName = "Custom/VariablesSingleton")]
     public class VariablesSingleton : ScriptableObject
