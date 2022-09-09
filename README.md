@@ -53,3 +53,7 @@ The Unity 2021.3.9f1 LTS was facing engine bugs. The Script and editor pipeline 
 ## Day 5 (09.09.2022)
 - Player Movement Script Updated with Clamped System
 - Camera Follow System Integrated
+- Added Strength Collision system to Spike
+- Shifted Triggers under parent
+- Added Scriptable Singleton System
+- Introduced PlayerPrefs, PreferenceSingleton and Audio Manager
