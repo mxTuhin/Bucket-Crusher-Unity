@@ -15,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
         
         [Header("Object References")]
         public GameObject PlayerPivot;
-        
+        public float horizontalRangeMax, horizontalRangeMin;    //Get From Serialize
+        public float verticalRangeMax, verticalRangeMin;    //Get From Serialize
         public FloatingJoystick _floatingJoystick;
         
         // UI Action
@@ -29,13 +30,26 @@ public class PlayerMovement : MonoBehaviour
 
         private void Update()
         {
+            
             horizontalMovement = _floatingJoystick.Horizontal;
             verticalMovement = _floatingJoystick.Vertical;
             
             Vector3 movement = new Vector3(horizontalMovement, verticalMovement, 0);
-            playerRigidbody.MovePosition(transform.position + movement * (Time.deltaTime * speedMultiplier));
+            // playerRigidbody.MovePosition(transform.position + movement * (Time.deltaTime * speedMultiplier));
 
             float distanceFromPivot = Vector3.Distance(transform.position, PlayerPivot.transform.position);
+            
+            
+            float horizontalOffset = horizontalMovement * speedMultiplier * Time.deltaTime;
+            float verticalOffset = verticalMovement * speedMultiplier * Time.deltaTime;
+
+            float rawHorizontalPosition = transform.position.x + horizontalOffset;
+            float clampedHorizontalPosition = Mathf.Clamp(rawHorizontalPosition, horizontalRangeMin, horizontalRangeMax);
+
+            float rawVerticalPosition = transform.position.y + verticalOffset;
+            float clampedVerticalPosition = Mathf.Clamp(rawVerticalPosition, verticalRangeMin, verticalRangeMax);
+
+            transform.position = new Vector3(clampedHorizontalPosition, clampedVerticalPosition, 0);
          
             if (distanceFromPivot > radius)
             {
