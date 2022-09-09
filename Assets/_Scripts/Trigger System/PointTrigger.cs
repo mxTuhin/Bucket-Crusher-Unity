@@ -27,7 +27,8 @@ public class PointTrigger : TriggerParent
     public void Trigger()
     {
         
-        float amount = GameControlManager.VariablesSingleton.moneyList[Random.Range(1, 2)];
-        voxelCollided?.Invoke(amount*GameControlManager.VariablesSingleton.moneyMultiplier);
+        float amount = GameControlManager.VariablesSingleton.returnMoneyListElement();
+        print(amount);
+        voxelCollided?.Invoke(amount);
     }
 }

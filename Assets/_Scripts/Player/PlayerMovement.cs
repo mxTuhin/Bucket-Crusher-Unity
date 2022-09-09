@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 differenceFromPivot = transform.position - PlayerPivot.transform.position;
                 // fromOrigintoObject *= radius / dist;
                 differenceFromPivot.Normalize();
-                transform.position = PlayerPivot.transform.position + differenceFromPivot*(radius-0.07f);
+                transform.position = PlayerPivot.transform.position + differenceFromPivot*(radius);
             }
 
             if (movement.magnitude != 0)

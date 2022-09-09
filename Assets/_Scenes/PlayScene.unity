@@ -4223,8 +4223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c483fd8e4c248547b999ca4a53fbb3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 2.5
-  radius: 2.1
+  speedMultiplier: 4
+  radius: 2.05
   PlayerPivot: {fileID: 1086514706}
   horizontalRangeMax: 5
   horizontalRangeMin: -1.5
@@ -6800,10 +6800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eed75f6e01396642a508d08d84ae8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyList:
-  - 0.5
-  - 1
-  moneyMultiplier: 1
   gameOver: 0
   GameOverCanvas: {fileID: 1362247339}
   ScriptableObjectReference: {fileID: 11400000, guid: da8b1d3fde3d10440a1412a3cc8a5d49, type: 2}
