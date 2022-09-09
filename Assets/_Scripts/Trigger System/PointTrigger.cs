@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts.Singleton_System;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PointTrigger : MonoBehaviour, ITriggerAble
+public class PointTrigger : TriggerParent
 {
     public static event Action<float> voxelCollided;
     
@@ -25,7 +26,8 @@ public class PointTrigger : MonoBehaviour, ITriggerAble
 
     public void Trigger()
     {
-        float amount = GameManager.instance.moneyList[Random.Range(1, 2)];
-        voxelCollided?.Invoke(amount*GameManager.instance.moneyMultiplier);
+        
+        float amount = GameControlManager.VariablesSingleton.moneyList[Random.Range(1, 2)];
+        voxelCollided?.Invoke(amount*GameControlManager.VariablesSingleton.moneyMultiplier);
     }
 }

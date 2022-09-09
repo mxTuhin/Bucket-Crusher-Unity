@@ -9,11 +9,9 @@ public class GameManager : GameplaySystems
     public static GameManager instance;
     // Start is called before the first frame update
 
-    public float[] moneyList = {0.5f, 1.0f};
-    public float moneyMultiplier=1.0f;
-
     public bool gameOver;
     public GameObject GameOverCanvas;
+    public ScriptableObject ScriptableObjectReference;
 
     private void OnEnable()
     {

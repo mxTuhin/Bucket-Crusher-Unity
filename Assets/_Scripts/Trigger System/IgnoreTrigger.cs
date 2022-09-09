@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IgnoreTrigger : MonoBehaviour
+public class IgnoreTrigger : TriggerParent
 {
     private void OnTriggerEnter(Collider collider)
     {
