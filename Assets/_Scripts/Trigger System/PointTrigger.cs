@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using _Scripts.Singleton_System;
+using _Scripts.ScriptableSingletonSystem;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;

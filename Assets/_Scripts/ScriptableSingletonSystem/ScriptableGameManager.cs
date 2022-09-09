@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.Singleton_System
+namespace _Scripts.ScriptableSingletonSystem
 {
     public class ScriptableGameManager : MonoBehaviour
     {

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameControlSingleton
   m_EditorClassIdentifier: 
   _variablesSingleton: {fileID: 11400000, guid: 4e4930ec65bf8c0458ccce5b7b8716e7, type: 2}
+  _preferenceSingleton: {fileID: 11400000, guid: f28ff0c6b7a4d814d80435eebc144f6c, type: 2}
