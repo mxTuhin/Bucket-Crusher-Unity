@@ -12,16 +12,22 @@ public class PlayerMovement : MonoBehaviour
         private float horizontalMovement;
         private float verticalMovement;
         public float radius=2f;
+        private bool gameOver;
         
         [Header("Object References")]
         public GameObject PlayerPivot;
-        public float horizontalRangeMax, horizontalRangeMin;    //Get From Serialize
-        public float verticalRangeMax, verticalRangeMin;    //Get From Serialize
+        public float horizontalRangeMax, horizontalRangeMin;    
+        public float verticalRangeMax, verticalRangeMin;    
         public FloatingJoystick _floatingJoystick;
         
         // UI Action
         public static event Action<float> ReduceGas;
-    
+
+        private void OnEnable()
+        {
+            GameManager.BroadcastGameOverStatus += GetGameOverStatus;
+        }
+
         void Start()
         {
             //Fetch the Rigidbody from the GameObject with this script attached
@@ -30,10 +36,17 @@ public class PlayerMovement : MonoBehaviour
 
         private void Update()
         {
-            
-            horizontalMovement = _floatingJoystick.Horizontal;
-            verticalMovement = _floatingJoystick.Vertical;
-            
+            if (!gameOver)
+            {
+                horizontalMovement = _floatingJoystick.Horizontal;
+                verticalMovement = _floatingJoystick.Vertical;
+            }
+            else
+            {
+                horizontalMovement = 0;
+                verticalMovement = 0;
+            }
+
             Vector3 movement = new Vector3(horizontalMovement, verticalMovement, 0);
             // playerRigidbody.MovePosition(transform.position + movement * (Time.deltaTime * speedMultiplier));
 
@@ -71,5 +84,10 @@ public class PlayerMovement : MonoBehaviour
         {
             
             
+        }
+
+        void GetGameOverStatus(bool _status)
+        {
+            gameOver = _status;
         }
 }

@@ -6,6 +6,7 @@ namespace _Scripts.ScriptableSingletonSystem
     public class VariablesSingleton : ScriptableObject
     {
         public float[] moneyList = {0.5f, 1.0f};
+        
 
 
         public float returnMoneyListElement()
