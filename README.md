@@ -57,3 +57,10 @@ The Unity 2021.3.9f1 LTS was facing engine bugs. The Script and editor pipeline 
 - Shifted Triggers under parent
 - Added Scriptable Singleton System
 - Introduced PlayerPrefs, PreferenceSingleton and Audio Manager
+
+## Day 6 (10.09.2022)
+- Worked on Character Control a bit more
+- IK System had to be reoriented
+- Collision Physics Integrated for Variable Strength System
+- Coin Instantiation process initiated. Integrated Unity Object Pooling Mechanics
+- Gameplay UI Furnished

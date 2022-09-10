@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: VariablesSingleton
   m_EditorClassIdentifier: 
   moneyList:
-  - 0.5
-  - 1
-  moneyMultiplier: 1
+  - 5
+  - 10
