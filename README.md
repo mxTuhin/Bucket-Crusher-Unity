@@ -64,3 +64,5 @@ The Unity 2021.3.9f1 LTS was facing engine bugs. The Script and editor pipeline 
 - Collision Physics Integrated for Variable Strength System
 - Coin Instantiation process initiated. Integrated Unity Object Pooling Mechanics
 - Gameplay UI Furnished
+
+I was highly interested to implement the new Unity DOTS Physics mechanics for the voxel cubes. But as the task is near deadline not going to stretch to that end.
