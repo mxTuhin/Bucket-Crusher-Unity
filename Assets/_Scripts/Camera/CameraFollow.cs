@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -12,7 +13,20 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed=5f;
 
     public Vector3 minValue, maxValue;
-    
+
+    public GameObject Player;
+    private float playerOffsetModifier;
+
+    private void OnEnable()
+    {
+        GameManager.PlayerObject += GetPlayer;
+    }
+
+    private void Start()
+    {
+        
+    }
+
 
     private void Update()
     {
@@ -21,7 +35,15 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 desiredPos = new Vector3(target.position.x*transformTowards.x, target.position.y*transformTowards.y, target.position.z) + offset;
+        if (Player.transform.position.x < 5)
+        {
+            playerOffsetModifier = 0.1f;
+        }
+        else
+        {
+            playerOffsetModifier = 0.5f;
+        }
+        Vector3 desiredPos = new Vector3(target.position.x*transformTowards.x, target.position.y*transformTowards.y, target.position.z)*playerOffsetModifier + offset;
 
         Vector3 clampPos = new Vector3(
             Mathf.Clamp(desiredPos.x, minValue.x, maxValue.x),
@@ -35,5 +57,10 @@ public class CameraFollow : MonoBehaviour
             smoothSpeed * Time.deltaTime
         );
         transform.position = smoothPos;
+    }
+
+    private void GetPlayer(GameObject _player)
+    {
+        Player = _player;
     }
 }

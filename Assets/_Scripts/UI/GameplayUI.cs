@@ -1,31 +1,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts.ScriptableSingletonSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameplayUI : MonoBehaviour
 {
+
+    
+    
+    [Header("Gas Can")]
     public Image gasBar;
     private float toalGas=50;   //Should Retrieve from Scriptable Objects
     private float usedGas;
+    public GameObject warning;
     
+    [Header("Progress System")]
     private int voxelCubeCount;
     private int triggeredCubeCount;
     public Image progressBar;
     
-    
+    [Header("Score System")]
     public TextMeshProUGUI moneyText;
     private float money;
+    
 
-    public GameObject warning;
     
     
     
     
     
+    // UI Actions
     public static event Action triggerGameOver; 
+    public static event Action InstantiateCoinAction; 
 
     private void OnEnable()
     {
@@ -41,12 +51,13 @@ public class GameplayUI : MonoBehaviour
         fillGasBarToPercent();
     }
     
-
+    #region Event Methods
     private void UpdateScore(float amount)
     {
         money += amount;
         moneyText.text = money.ToString("00")+"$";
         // print(money);
+        InstantiateCoinAction?.Invoke();
     }
 
     private void UpdateVoxelCubeCount(int _value)
@@ -65,6 +76,10 @@ public class GameplayUI : MonoBehaviour
         usedGas += _value;
         fillGasBarToPercent();
     }
+    
+    #endregion
+    
+    #region Reference Methods
     private void fillGasBarToPercent()
     {
         float fillerAmount = ((toalGas - usedGas) * 2 / 100.0f);
@@ -79,4 +94,9 @@ public class GameplayUI : MonoBehaviour
             triggerGameOver?.Invoke();
         }
     }
+
+    
+    #endregion
+    
+    
 }

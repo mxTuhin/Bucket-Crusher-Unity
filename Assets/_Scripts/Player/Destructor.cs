@@ -17,10 +17,27 @@ public class Destructor : MonoBehaviour
                 var tempContraints = RigidbodyConstraints.FreezePositionZ;
                 rb.constraints = tempContraints;
                 rb.mass = 100;
+                StartCoroutine(AddSphereCollider(collider));
                 // rb.drag = 10;
                 // rb.angularDrag = 5;
                 AddProgress?.Invoke();
             }
         }
+    }
+
+    IEnumerator AddSphereCollider(Collider collider)
+    {
+        yield return new WaitForSeconds(1.5f);
+        try
+        {
+            SphereCollider sc = collider.AddComponent<SphereCollider>();
+            sc.radius = 0.7f;
+        }
+        catch (Exception e)
+        {
+            
+        }
+        yield break;
+
     }
 }

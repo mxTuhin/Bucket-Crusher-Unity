@@ -53,16 +53,17 @@ public class PlayerMovement : MonoBehaviour
          
             if (distanceFromPivot > radius)
             {
-                Vector3 differenceFromPivot = transform.position - PlayerPivot.transform.position;
+                var position = PlayerPivot.transform.position;
+                Vector3 differenceFromPivot = transform.position - position;
                 // fromOrigintoObject *= radius / dist;
                 differenceFromPivot.Normalize();
-                transform.position = PlayerPivot.transform.position + differenceFromPivot*(radius);
+                transform.position = position + differenceFromPivot*(radius);
             }
 
-            if (movement.magnitude != 0)
-            {
-                ReduceGas?.Invoke(Time.deltaTime);
-            }
+            // if (movement.magnitude != 0)
+            // {
+            //     ReduceGas?.Invoke(Time.deltaTime);
+            // }
 
         }
 
