@@ -35,6 +35,7 @@ public class GameManager : GameplaySystems
 
     // Gameobjects Events
     public static event Action<GameObject> PlayerObject;
+    public static event Action<bool> BroadcastGameOverStatus;
     
 
     private void OnEnable()
@@ -64,6 +65,7 @@ public class GameManager : GameplaySystems
     private void GameOverEvent()
     {
         gameOver = true;
+        BroadcastGameOverStatus?.Invoke(true);
         GameOverCanvas.SetActive(true);
     }
     

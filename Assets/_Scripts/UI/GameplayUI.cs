@@ -14,7 +14,7 @@ public class GameplayUI : MonoBehaviour
     
     [Header("Gas Can")]
     public Image gasBar;
-    private float toalGas=50;   //Should Retrieve from Scriptable Objects
+    private float toalGas=20;   //Should Retrieve from Scriptable Objects
     private float usedGas;
     public GameObject warning;
     
