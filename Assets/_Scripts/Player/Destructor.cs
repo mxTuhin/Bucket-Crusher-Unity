@@ -31,7 +31,7 @@ public class Destructor : MonoBehaviour
         try
         {
             SphereCollider sc = collider.AddComponent<SphereCollider>();
-            sc.radius = 0.7f;
+            sc.radius = 0.6f;
         }
         catch (Exception e)
         {

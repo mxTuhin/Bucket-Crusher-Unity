@@ -60,10 +60,10 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = position + differenceFromPivot*(radius);
             }
 
-            // if (movement.magnitude != 0)
-            // {
-            //     ReduceGas?.Invoke(Time.deltaTime);
-            // }
+            if (movement.magnitude != 0)
+            {
+                ReduceGas?.Invoke(Time.deltaTime);
+            }
 
         }
 
