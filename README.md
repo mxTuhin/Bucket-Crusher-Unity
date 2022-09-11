@@ -66,3 +66,12 @@ The Unity 2021.3.9f1 LTS was facing engine bugs. The Script and editor pipeline 
 - Gameplay UI Furnished
 
 I was highly interested to implement the new Unity DOTS Physics mechanics for the voxel cubes. But as the task is near deadline not going to stretch to that end.
+
+## Day 7(11.09.2022)
+- Upgradation System and UI 
+- PlayerPrefs Introduced
+- Settings and Gameplay UI Reworked
+
+<center>
+<img src="Screenshot/Day7.png" height="300px">
+</center>
