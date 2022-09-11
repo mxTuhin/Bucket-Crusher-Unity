@@ -15,3 +15,32 @@ MonoBehaviour:
   moneyList:
   - 5
   - 10
+  availableMoney: 0
+  manipulatorPrices:
+  - 10
+  - 100
+  - 1000
+  - 10000
+  manipulatorLevel: 0
+  fuelPrices:
+  - 10
+  - 20
+  - 40
+  - 80
+  - 160
+  - 500
+  fuelLevel: 0
+  powerPrices:
+  - 100
+  - 500
+  - 1000
+  - 2000
+  powerLevel: 0
+  sizePrices:
+  - 100
+  - 300
+  - 500
+  - 1000
+  - 2000
+  - 4000
+  sizeLevel: 2

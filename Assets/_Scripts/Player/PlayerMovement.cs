@@ -7,14 +7,13 @@ public class PlayerMovement : MonoBehaviour
 {
         Rigidbody playerRigidbody;
         
-        [Header("Control Parameters")]
         public float speedMultiplier = 5f;
         private float horizontalMovement;
         private float verticalMovement;
         public float radius=2f;
         private bool gameOver;
-        
-        [Header("Object References")]
+        private bool isPlaying;
+
         public GameObject PlayerPivot;
         public float horizontalRangeMax, horizontalRangeMin;    
         public float verticalRangeMax, verticalRangeMin;    
@@ -36,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         private void Update()
         {
-            if (!gameOver)
+            if (!gameOver && isPlaying)
             {
                 horizontalMovement = _floatingJoystick.Horizontal;
                 verticalMovement = _floatingJoystick.Vertical;
@@ -86,8 +85,9 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
-        void GetGameOverStatus(bool _status)
+        void GetGameOverStatus(bool _isGameOver, bool _isPlaying)
         {
-            gameOver = _status;
+            gameOver = _isGameOver;
+            isPlaying = _isPlaying;
         }
 }

@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        MainMenu.ToggleSound += SetSoundStatus;
     }
 
     // Start is called before the first frame update
@@ -31,5 +31,13 @@ public class AudioManager : MonoBehaviour
     void PlayInteractSFX()
     {
         _AudioSource.PlayOneShot(interactSFX);
+    }
+
+    public void SetSoundStatus(bool _status)
+    {
+        if (_status)
+            _AudioSource.volume = 1.0f;
+        else
+            _AudioSource.volume = 0.0f;
     }
 }

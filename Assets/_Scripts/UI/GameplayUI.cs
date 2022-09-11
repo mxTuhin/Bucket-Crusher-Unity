@@ -14,7 +14,7 @@ public class GameplayUI : MonoBehaviour
     
     [Header("Gas Can")]
     public Image gasBar;
-    private float toalGas=20;   //Should Retrieve from Scriptable Objects
+    private float totalGas=20;   //Should Retrieve from Scriptable Objects
     private float usedGas;
     public GameObject warning;
     
@@ -43,21 +43,33 @@ public class GameplayUI : MonoBehaviour
         VoxelBoxGenerator.voxelCounter += UpdateVoxelCubeCount;
         Destructor.AddProgress += ModifyLevelProgressBar;
         PlayerMovement.ReduceGas += ModifyGasLevel;
+        MainMenu.IncreaseFuel += UpdateGasValue;
+        MainMenu.TriggerCash += UpdateScore;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         fillGasBarToPercent();
+        money = GameControlManager.VariablesSingleton.availableMoney;
+        moneyText.text = money.ToString("00")+"$";
     }
     
     #region Event Methods
     private void UpdateScore(float amount)
     {
+        
         money += amount;
         moneyText.text = money.ToString("00")+"$";
+        GameControlManager.VariablesSingleton.availableMoney = (int)money;
         // print(money);
         InstantiateCoinAction?.Invoke();
+    }
+    
+    private void UpdateGasValue(float _value)
+    {
+        totalGas += _value;
+        fillGasBarToPercent();
     }
 
     private void UpdateVoxelCubeCount(int _value)
@@ -77,12 +89,13 @@ public class GameplayUI : MonoBehaviour
         fillGasBarToPercent();
     }
     
+    
     #endregion
     
     #region Reference Methods
     private void fillGasBarToPercent()
     {
-        float fillerAmount = ((toalGas - usedGas) * 2 / 100.0f);
+        float fillerAmount = ((totalGas - usedGas) * 2 / 100.0f);
         gasBar.fillAmount = fillerAmount;
         if (fillerAmount < 0.15 && !warning.activeSelf)
         {
