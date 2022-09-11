@@ -26,6 +26,8 @@ public class GameplayUI : MonoBehaviour
     [Header("Score System")]
     public TextMeshProUGUI moneyText;
     private float money;
+
+    public GameObject GameCompleted;
     
 
     
@@ -81,6 +83,10 @@ public class GameplayUI : MonoBehaviour
     {
         triggeredCubeCount += 1;
         progressBar.fillAmount = (voxelCubeCount - triggeredCubeCount)/(float)voxelCubeCount;
+        if (progressBar.fillAmount <= 0)
+        {
+            GameCompleted.SetActive(true);
+        }
     }
 
     private void ModifyGasLevel(float _value)

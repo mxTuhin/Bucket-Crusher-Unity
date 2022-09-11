@@ -71,7 +71,16 @@ I was highly interested to implement the new Unity DOTS Physics mechanics for th
 - Upgradation System and UI 
 - PlayerPrefs Introduced
 - Settings and Gameplay UI Reworked
+- Added Audio
+- Preloader Scene
 
 <center>
 <img src="Screenshot/Day7.png" height="300px">
 </center>
+
+## Final Developer Note
+
+<b>Initially I had a plan of using unity DOTS Physics but later decided to stick with Rigidbodies. 
+The character movement system might need a bit more work to be better. I think the collision has physics
+has a good scope of improvement to feel like more fluid. But this stage is also kinda Fun.
+Overall I have implemented known and new mechanics and I am happy its done finally.</b>
