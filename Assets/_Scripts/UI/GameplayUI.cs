@@ -16,7 +16,7 @@ public class GameplayUI : MonoBehaviour
     public Image gasBar;
     private float totalGas=20;   //Should Retrieve from Scriptable Objects
     private float usedGas;
-    public GameObject warning;
+    public GameObject warningSprite;
     
     [Header("Progress System")]
     private int voxelCubeCount;
@@ -97,9 +97,9 @@ public class GameplayUI : MonoBehaviour
     {
         float fillerAmount = ((totalGas - usedGas) * 2 / 100.0f);
         gasBar.fillAmount = fillerAmount;
-        if (fillerAmount < 0.15 && !warning.activeSelf)
+        if (fillerAmount < 0.15)
         {
-            warning.gameObject.SetActive(true);
+            warningSprite.SetActive(true);
         }
 
         if (fillerAmount <= 0)
@@ -110,6 +110,14 @@ public class GameplayUI : MonoBehaviour
 
     
     #endregion
-    
-    
+
+    private void OnDisable()
+    {
+        PointTrigger.voxelCollided -= UpdateScore;
+        VoxelBoxGenerator.voxelCounter -= UpdateVoxelCubeCount;
+        Destructor.AddProgress -= ModifyLevelProgressBar;
+        PlayerMovement.ReduceGas -= ModifyGasLevel;
+        MainMenu.IncreaseFuel -= UpdateGasValue;
+        MainMenu.TriggerCash -= UpdateScore;
+    }
 }
