@@ -15,6 +15,7 @@ public class GameManager : GameplaySystems
 
     
     public bool gameOver;
+    public bool isPlaying;
     
     [Header("Object References")]
     public GameObject GameOverCanvas;
@@ -35,24 +36,27 @@ public class GameManager : GameplaySystems
 
     // Gameobjects Events
     public static event Action<GameObject> PlayerObject;
-    public static event Action<bool> BroadcastGameOverStatus;
-    
+    public static event Action<bool, bool> BroadcastGameOverStatus;
+
 
     private void OnEnable()
     {
-        GameplayUI.triggerGameOver += GameOverEvent;
+        
         if (Player != null)
         {
             PlayerObject?.Invoke(Player);
         }
-
+        
+        GameplayUI.triggerGameOver += GameOverEvent;
         GameplayUI.InstantiateCoinAction += DropCoin;
+        MainMenu.TriggerPlaying += setPlayingStatus;
     }
 
     void Start()
     {
         instance = this;
         CallInitiateCoinPool();
+        isPlaying = false;
 
     }
 
@@ -65,11 +69,20 @@ public class GameManager : GameplaySystems
     private void GameOverEvent()
     {
         gameOver = true;
-        BroadcastGameOverStatus?.Invoke(true);
-        GameOverCanvas.SetActive(true);
+        isPlaying = false;
+        BroadcastGameOverStatus?.Invoke(gameOver, isPlaying);
+        GameOverCanvas.SetActive(gameOver);
+    }
+
+    public void setPlayingStatus(bool _status)
+    {
+        isPlaying = _status;
+        BroadcastGameOverStatus?.Invoke(false, true);
     }
     
     #region Reference Methods
+    
+    
     
     public GameObject GetPooledObject()
     {
