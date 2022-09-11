@@ -7,6 +7,7 @@ using UnityEngine;
 public class Destructor : MonoBehaviour
 {
     public static event Action AddProgress;
+    public static event Action PlayAudio;
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("VoxelCubes"))
