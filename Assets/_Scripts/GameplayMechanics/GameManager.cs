@@ -21,6 +21,8 @@ public class GameManager : GameplaySystems
     public GameObject GameOverCanvas;
     public ScriptableObject ScriptableObjectReference;
     public GameObject Player;
+    public BoxCollider PlayerCollider;
+    public Vector3[] colliderSize;
     [Header("Object Reference")] public Material[] _Materials;
     
     [Header("Coin Instantiation System")]
@@ -50,6 +52,8 @@ public class GameManager : GameplaySystems
         GameplayUI.triggerGameOver += GameOverEvent;
         GameplayUI.InstantiateCoinAction += DropCoin;
         MainMenu.TriggerPlaying += setPlayingStatus;
+        MainMenu.IncreaseSize += IncreasePlayerSize;
+        MainMenu.IncreasePower += IncreasePlayerPower;
     }
 
     void Start()
@@ -72,12 +76,31 @@ public class GameManager : GameplaySystems
         isPlaying = false;
         BroadcastGameOverStatus?.Invoke(gameOver, isPlaying);
         GameOverCanvas.SetActive(gameOver);
+        PlayerPrefs.SetFloat("Money", GameControlManager.VariablesSingleton.availableMoney);
     }
 
     public void setPlayingStatus(bool _status)
     {
         isPlaying = _status;
         BroadcastGameOverStatus?.Invoke(false, true);
+    }
+
+    public void IncreasePlayerSize(int currentScale)
+    {
+        Player.transform.localScale = new Vector3(
+            Player.transform.localScale.x, 
+            0.7f+(0.2f*currentScale), 
+            0.7f+(0.2f*currentScale));
+    }
+
+    public void IncreasePlayerPower(int _level)
+    {
+        PlayerCollider.size = colliderSize[_level];
+        if (_level >= 3)
+        {
+            print("Coming Here");
+            PlayerCollider.center = Vector3.zero;
+        }
     }
     
     #region Reference Methods
@@ -136,8 +159,13 @@ public class GameManager : GameplaySystems
     
         
     #endregion
-    
-    
 
-    
+    private void OnDisable()
+    {
+        GameplayUI.triggerGameOver -= GameOverEvent;
+        GameplayUI.InstantiateCoinAction -= DropCoin;
+        MainMenu.TriggerPlaying -= setPlayingStatus;
+        MainMenu.IncreaseSize -= IncreasePlayerSize;
+        MainMenu.IncreasePower -= IncreasePlayerPower;
+    }
 }

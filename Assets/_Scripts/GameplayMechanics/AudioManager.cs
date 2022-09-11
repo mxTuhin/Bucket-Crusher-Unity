@@ -40,4 +40,9 @@ public class AudioManager : MonoBehaviour
         else
             _AudioSource.volume = 0.0f;
     }
+
+    private void OnDisable()
+    {
+        MainMenu.ToggleSound -= SetSoundStatus;
+    }
 }

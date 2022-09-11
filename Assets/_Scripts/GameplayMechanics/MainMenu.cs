@@ -27,7 +27,10 @@ public class MainMenu : GameplaySystems
     public static event Action<bool> ToggleSound;
     public static event Action<bool> TriggerPlaying;
     public static event Action<float> IncreaseFuel;
-    public static event Action<float> TriggerCash; 
+    public static event Action<float> TriggerCash;
+
+    public static event Action<int> IncreaseSize;
+    public static event Action<int> IncreasePower; 
 
 
     // Start is called before the first frame update
@@ -39,8 +42,29 @@ public class MainMenu : GameplaySystems
         setFuelPrice();
         setPowerPrice();
         setSizePrice();
+
+        if (PlayerPrefs.GetInt("SizeLevel") >= _vSingleton.sizePrices.Length - 1)
+        {
+            sizePrice.text = "MAX";
+            sizePrice.GetComponentInParent<Button>().interactable = false;
+        }
+            
+        if (PlayerPrefs.GetInt("PowerLevel") >= _vSingleton.powerPrices.Length - 1)
+        {
+            powerPrice.text = "MAX";
+            powerPrice.GetComponentInParent<Button>().interactable = false;
+        }
+        
+        if (PlayerPrefs.GetInt("FuelLevel") >= _vSingleton.fuelPrices.Length - 1)
+        {
+            fuelPrice.text = "MAX";
+            fuelPrice.GetComponentInParent<Button>().interactable = false;
+        }
+        
+
         
         IncreaseFuel?.Invoke(_vSingleton.fuelLevel*5);
+        IncreasePower?.Invoke(_vSingleton.powerLevel);
         
     }
     
@@ -72,8 +96,9 @@ public class MainMenu : GameplaySystems
 
     public void increaseFuel()
     {
-        if(!(_vSingleton.availableMoney>_vSingleton.fuelPrices[_vSingleton.fuelLevel]))
+        if (!(_vSingleton.availableMoney > _vSingleton.fuelPrices[_vSingleton.fuelLevel]))
             return;
+        
         invokeTriggerCash(_vSingleton.fuelPrices[_vSingleton.fuelLevel]);
         IncreaseFuel?.Invoke(5);
         _vSingleton.fuelLevel += 1;
@@ -83,9 +108,11 @@ public class MainMenu : GameplaySystems
 
     public void increasePower()
     {
-        if(!(_vSingleton.availableMoney>_vSingleton.powerPrices[_vSingleton.powerLevel]))
+        if (!(_vSingleton.availableMoney > _vSingleton.powerPrices[_vSingleton.powerLevel]))
             return;
+        
         invokeTriggerCash(_vSingleton.powerPrices[_vSingleton.powerLevel]);
+        IncreasePower?.Invoke(_vSingleton.powerLevel);
         _vSingleton.powerLevel += 1;
         setPowerPrice();
         
@@ -93,11 +120,13 @@ public class MainMenu : GameplaySystems
 
     public void increaseSize()
     {
-        if(!(_vSingleton.availableMoney>_vSingleton.sizePrices[_vSingleton.sizeLevel]))
+        if (!(_vSingleton.availableMoney > _vSingleton.sizePrices[_vSingleton.sizeLevel]))
             return;
+
         invokeTriggerCash(_vSingleton.sizePrices[_vSingleton.sizeLevel]);
         _vSingleton.sizeLevel += 1;
         setSizePrice();
+        
         
     }
 
@@ -110,12 +139,14 @@ public class MainMenu : GameplaySystems
     {
         if (_vSingleton.fuelLevel >= _vSingleton.fuelPrices.Length)
         {
+            fuelPrice.text = "MAX";
             fuelPrice.GetComponentInParent<Button>().interactable = false;
         }
         else
         {
             float temp = _vSingleton.fuelPrices[_vSingleton.fuelLevel];
             fuelPrice.text = temp+" $";
+            PlayerPrefs.SetInt("FuelLevel", _vSingleton.fuelLevel);
         }
         
         
@@ -124,28 +155,36 @@ public class MainMenu : GameplaySystems
     {
         if (_vSingleton.powerLevel >= _vSingleton.powerPrices.Length)
         {
+            powerPrice.text = "MAX";
             powerPrice.GetComponentInParent<Button>().interactable = false;
         }
         else
         {
             float temp = _vSingleton.powerPrices[_vSingleton.powerLevel];
             powerPrice.text = temp+" $";
+            
+            PlayerPrefs.SetInt("PowerLevel", _vSingleton.powerLevel);
         }
         
     }
     
     private void setSizePrice()
     {
-        
         if (_vSingleton.sizeLevel >= _vSingleton.sizePrices.Length)
         {
+            sizePrice.text = "MAX";
             sizePrice.GetComponentInParent<Button>().interactable = false;
         }
         else
         {
             float temp = _vSingleton.sizePrices[_vSingleton.sizeLevel];
             sizePrice.text = temp+" $";
+            IncreaseSize?.Invoke(_vSingleton.sizeLevel);
+            PlayerPrefs.SetInt("SizeLevel", _vSingleton.sizeLevel);
         }
+        
+        
+        
         
     }
 
@@ -153,6 +192,8 @@ public class MainMenu : GameplaySystems
     {
         TriggerCash?.Invoke(-_value);
     }
+    
+    
 
    
 }
