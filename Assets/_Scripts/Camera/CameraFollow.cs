@@ -63,4 +63,9 @@ public class CameraFollow : MonoBehaviour
     {
         Player = _player;
     }
+
+    private void OnDisable()
+    {
+        GameManager.PlayerObject -= GetPlayer;
+    }
 }
