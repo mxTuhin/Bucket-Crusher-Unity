@@ -6,6 +6,13 @@
 - Start Date: 04.09.2022
 - Duration: 7 Days (7*24 Hours)
 
+## Project Dependency
+- RootMotion FinalIK (You can buy the FinalIK From Here and Support the Dev: https://assetstore.unity.com/packages/tools/animation/final-ik-14290)
+<b> But Dont Worry. I have added a custom script in the _Scripts/InverseKinematics Folder so that you can use the IK.</b>
+- If you have FinalIK Use the Scene "PlayScene"
+- If you want to use my custom IK Use The Scene "IKPlayScene"
+
+
 ## Development Timeline
 
 ## Day 1 (04.09.2022)
